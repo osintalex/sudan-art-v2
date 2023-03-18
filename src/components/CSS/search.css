@@ -1,0 +1,158 @@
+/*
+Note that the masonry grid layout for images is in search.css
+*/
+
+.search-container {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  max-width: 100rem;
+  justify-content: center;
+  padding: 0px 40px 10px 40px;
+  position: relative;
+  text-align: center;
+}
+
+.search-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  position: relative;
+  text-align: center;
+}
+
+.search-input {
+  text-align: center;
+  width: 20rem;
+}
+
+.search-form-label {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+#search-form-text {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+#search-button {
+  background: radial-gradient(
+    circle at 50% 50%,
+    #b52626,
+    #bc2828,
+    #c22b2b,
+    #c82d2d,
+    #cf3030,
+    #d03838,
+    #d14040,
+    #d24848,
+    #d35050,
+    #d45757,
+    #d55f5f,
+    #d66767
+  );
+  color: #d7e3eb;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-results {
+  display: grid;
+  gap: 0.3rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.search-image {
+  border: 3px solid #d7e3eb;
+  cursor: pointer;
+  height: 15rem;
+  margin: 0.3rem;
+  object-fit: cover;
+  width: 15rem;
+}
+.search-popover-image {
+  border: 3px solid #d7e3eb;
+  height: 100%;
+  margin: 0.3rem;
+  width: 100%;
+}
+
+#search-spinning-emoji {
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#search-date {
+  text-align: center;
+}
+
+.search-no-results-text {
+  -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 5s; /* Firefox < 16 */
+  -ms-animation: fadein 5s; /* Internet Explorer */
+  -o-animation: fadein 5s; /* Opera < 12.1 */
+  animation: fadein 5s;
+}
+
+.search-modal-header {
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    #22648f,
+    #276a94,
+    #2b719a,
+    #30779f,
+    #367da3,
+    #3b83a8,
+    #4189ac,
+    #488faf,
+    #4f95b2,
+    #5999b2,
+    #639cb2,
+    #6da0b2
+  );
+}
+
+.search-modal-body {
+  background: linear-gradient(
+    90deg,
+    #22648f,
+    #276a94,
+    #2b719a,
+    #30779f,
+    #367da3,
+    #3b83a8,
+    #4189ac,
+    #488faf,
+    #4f95b2,
+    #5999b2,
+    #639cb2,
+    #6da0b2
+  );
+}
+
+.search-modal-footer {
+  background: linear-gradient(
+    90deg,
+    #22648f,
+    #276a94,
+    #2b719a,
+    #30779f,
+    #367da3,
+    #3b83a8,
+    #4189ac,
+    #488faf,
+    #4f95b2,
+    #5999b2,
+    #639cb2,
+    #6da0b2
+  );
+  justify-content: center;
+}

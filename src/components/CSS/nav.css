@@ -1,0 +1,9 @@
+.navbar-flex-box {
+  padding-left: 1em;
+  padding-top: 1em;
+  position: relative;
+}
+
+.nav-image {
+  margin-top: -3px;
+}
