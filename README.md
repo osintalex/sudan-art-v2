@@ -22,14 +22,19 @@ npm install netlify-cli -g
 netlify dev
 ```
 
-You can also just do `fmt.Println` to get stuff to stoud in go with this set up.
-
 ## Notes
 
-Going to be a lot less work if you can provide urls to look up the images by in the browse bit.
-Wonder if it's better to just send the image id though and store all the images on the frontend?
-Or in go in the backend I can send over a particular file based off the id? I think that could work.
+Need to next validate image name with regex then check it can return stuff.
+Need to do a general refactor of this now it's working...
+Things to change:
 
+- general style and logging pass - should use log not fmt everywhere, check that gives output
+- add all the b64 data to the json, that's a much neater pattern. Code for that in a utils script, also then
+remove the json from version control.
+- Then need to... bump up this issue https://github.com/netlify/netlify-lambda/issues/630
+- Then once that's all done, need to add a get imagedetails endpoint for when you click on the image...
+or do you? that's all in the json already so could just get set in the frontend really
+- if you do that then just throw error if url path is wrong
 ## To dump the db
 
 `pg_restore -d sudan_art_backup ~/Documents/Sudan\ Art/sudan_art_db_dump.pgsql`

@@ -1,4 +1,4 @@
-module github.com/osintalex/sudan-art-v2
+module "sudan-art"
 
 go 1.20
 

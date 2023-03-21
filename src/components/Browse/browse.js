@@ -28,7 +28,7 @@ export default function Browse() {
   const getMaPics = useCallback(async (page) => {
     setLoading(true);
     // fetch(`${config.url}/recent/?page=${page}`)
-    fetch(`api/v1/recent/?page=${page}`)
+    fetch(`api/v1/recent?page=${page}`)
       .then((response) => {
         return response.json();
       })
@@ -79,9 +79,12 @@ export default function Browse() {
                   alt={pic.artist}
                   // The backend delivers media urls differently in development vs production
                   src={
-                    process.env.NODE_ENV === "development"
-                      ? `${config.url}${pic.thumbnail}`
-                      : pic.thumbnail
+                    // process.env.NODE_ENV === "development"
+                    //   ? `${config.url}${pic.thumbnail}`
+                    //   : pic.thumbnail
+                    // doing it this ridonculous way b/c netlify is broken ffs
+                    // https://github.com/netlify/netlify-lambda/issues/630
+                    pic.image_data
                   }
                   onClick={() => {
                     setPopoverImageDetails({
