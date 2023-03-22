@@ -25,7 +25,6 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { makeRepeated } from "../../utils/utils";
-import { config } from "../../constants.js";
 import MultiLingualContent from "../MultingualContent/multilingualContent.js";
 
 /**
@@ -48,11 +47,6 @@ function ImagePopover(props) {
   const { imageDescription, imageArtist, imageDate, imageHighRes, sourceURL } =
     props.popoverImageDetails;
 
-  const imageSrc =
-    process.env.NODE_ENV === "development"
-      ? `${config.url}${props.popoverImageDetails.imageSrc}`
-      : props.popoverImageDetails.imageSrc;
-
   return (
     <>
       <Modal isOpen={props.isOpen} onClose={props.onClose}>
@@ -66,7 +60,7 @@ function ImagePopover(props) {
             <Image
               className="search-popover-image"
               alt={imageDescription}
-              src={imageSrc}
+              src={props.popoverImageDetails.imageSrc}
               onClick={props.onOpen}
             />
             {imageDescription.split(",").map((tag, index) => (
@@ -102,7 +96,6 @@ function ImagePopover(props) {
             </Text>
             <Center style={{ transform: "scale(0.6)" }}>
               <FacebookShareButton
-                url={imageSrc}
                 quote={
                   "Look at this amazing piece of Sudanese revolutionary art! Burhan fi kobr!"
                 }
@@ -111,7 +104,6 @@ function ImagePopover(props) {
                 <FacebookIcon />
               </FacebookShareButton>
               <TwitterShareButton
-                url={imageSrc}
                 title={"Sudanese Revolutionary Art"}
                 via={"https://sudanart.com"}
                 hashtags={["#sudancoup", "#sudanart"]}
@@ -120,7 +112,6 @@ function ImagePopover(props) {
                 <TwitterIcon />
               </TwitterShareButton>
               <WhatsappShareButton
-                url={imageSrc}
                 title={"Check out this amazing Sudanese art!"}
               >
                 <WhatsappIcon />

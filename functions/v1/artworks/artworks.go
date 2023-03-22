@@ -24,7 +24,36 @@ type ArtworksWithImageData struct {
 	Imagedata string `json:"image_data"`
 }
 
-func ReadArtworksJSON(filePath string) []Artwork {
+type BrowseResults struct {
+	Results []ArtworksWithImageData `json:"results"`
+	Next    bool                    `json:"next"`
+}
+
+const offset = 5
+
+var totalArtworks int = len(artworkData)
+var artworkData []Artwork = readArtworksJSON("./sudan_art_database.json")
+
+func BrowseImages(pageNumber int) (string, error) {
+	startIndex := offset * pageNumber
+	endIndex := startIndex + offset
+	var hasMore bool = true
+	if endIndex > totalArtworks {
+		endIndex = totalArtworks
+		hasMore = false
+	}
+	artworksSection := artworkData[startIndex:endIndex]
+	artworkTings := generateBase64Images(artworksSection)
+	browseResults := BrowseResults{artworkTings, hasMore}
+	artworksBytes, error := json.Marshal(browseResults)
+	if error != nil {
+		log.Fatalf("Error unmarshalling images %v", error.Error())
+		return "", error
+	}
+	return string(artworksBytes), nil
+}
+
+func readArtworksJSON(filePath string) []Artwork {
 	artworksList, error := ioutil.ReadFile(filePath)
 	if error != nil {
 		log.Fatalf("Error when opening file: %v", error.Error())
@@ -37,7 +66,7 @@ func ReadArtworksJSON(filePath string) []Artwork {
 	return artworkData
 }
 
-func GenerateBase64Images(artworkData []Artwork) []ArtworksWithImageData {
+func generateBase64Images(artworkData []Artwork) []ArtworksWithImageData {
 	var artworksWithImageData []ArtworksWithImageData
 	for _, artwork := range artworkData {
 		imageFileName := artwork.High_res_image
