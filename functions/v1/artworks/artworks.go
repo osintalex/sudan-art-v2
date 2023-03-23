@@ -21,9 +21,11 @@ type BrowseResults struct {
 }
 
 const offset = 5
-var artworkData []Artwork = readArtworksJSON("./sudan_art_database.json")
+
+var artworkData []Artwork = marshalArtworksJSON()
 var totalArtworks int = len(artworkData)
 
+// Paginate the JSON back to client
 func BrowseImages(pageNumber int) (string, error) {
 	startIndex := offset * pageNumber
 	endIndex := startIndex + offset
@@ -42,7 +44,8 @@ func BrowseImages(pageNumber int) (string, error) {
 	return string(artworksBytes), nil
 }
 
-func readArtworksJSON(filePath string) []Artwork {
+// Convert the god awful string in `data.go` into a nice slice of structs
+func marshalArtworksJSON() []Artwork {
 	var artworkData []Artwork
 	error := json.Unmarshal([]byte(ArtworksJSON), &artworkData)
 	if error != nil {

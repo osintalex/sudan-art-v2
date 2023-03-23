@@ -7,6 +7,7 @@ import (
 	"sudan-art/artworks"
 )
 
+// Entrypoint for AWS Lamba function which is what runs this under the hood in production
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	urlPath := request.Path
 	var response string
