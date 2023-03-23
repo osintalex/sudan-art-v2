@@ -21,9 +21,8 @@ type BrowseResults struct {
 }
 
 const offset = 5
-
-var totalArtworks int = len(artworkData)
 var artworkData []Artwork = readArtworksJSON("./sudan_art_database.json")
+var totalArtworks int = len(artworkData)
 
 func BrowseImages(pageNumber int) (string, error) {
 	startIndex := offset * pageNumber

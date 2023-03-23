@@ -22,13 +22,17 @@ npm install netlify-cli -g
 netlify dev
 ```
 
+## Deployment
+
+Just run `netlify deploy`.
+
 ## Notes
 
 - Then need to... bump up this issue https://github.com/netlify/netlify-lambda/issues/630
 - Write docstrings based off this https://github.com/spf13/cobra/blob/main/args.go
 - Run some go lint checks
 - Deploy
-
+-Change repo name again and update medium article
 
 ## To dump the db
 
