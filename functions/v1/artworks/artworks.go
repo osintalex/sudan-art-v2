@@ -19,13 +19,13 @@ type Artwork struct {
 	Url            string `json:"url"`
 }
 
-type ArtworksWithImageData struct {
-	Artwork
-	Imagedata string `json:"image_data"`
-}
+// type ArtworksWithImageData struct {
+// 	Artwork
+// 	Imagedata string `json:"image_data"`
+// }
 
 type BrowseResults struct {
-	Results []ArtworksWithImageData `json:"results"`
+	Results []Artwork `json:"results"`
 	Next    bool                    `json:"next"`
 }
 
@@ -43,8 +43,8 @@ func BrowseImages(pageNumber int) (string, error) {
 		hasMore = false
 	}
 	artworksSection := artworkData[startIndex:endIndex]
-	artworkTings := generateBase64Images(artworksSection)
-	browseResults := BrowseResults{artworkTings, hasMore}
+	// artworkTings := generateBase64Images(artworksSection)
+	browseResults := BrowseResults{artworksSection, hasMore}
 	artworksBytes, error := json.Marshal(browseResults)
 	if error != nil {
 		log.Fatalf("Error unmarshalling images %v", error.Error())
@@ -54,28 +54,24 @@ func BrowseImages(pageNumber int) (string, error) {
 }
 
 func readArtworksJSON(filePath string) []Artwork {
-	artworksList, error := ioutil.ReadFile(filePath)
-	if error != nil {
-		log.Fatalf("Error when opening file: %v", error.Error())
-	}
 	var artworkData []Artwork
-	error = json.Unmarshal(artworksList, &artworkData)
+	error := json.Unmarshal([]byte(ArtworksJSON), &artworkData)
 	if error != nil {
-		log.Fatalf("Error during unmarshal(): %v", error.Error())
+		log.Fatalf("Error unpacking JSON string %v", error.Error())
 	}
 	return artworkData
 }
 
-func generateBase64Images(artworkData []Artwork) []ArtworksWithImageData {
-	var artworksWithImageData []ArtworksWithImageData
-	for _, artwork := range artworkData {
-		imageFileName := artwork.High_res_image
-		imageData, _, _ := readImage(imageFileName)
-		artworkWithImageData := ArtworksWithImageData{Artwork: artwork, Imagedata: imageData}
-		artworksWithImageData = append(artworksWithImageData, artworkWithImageData)
-	}
-	return artworksWithImageData
-}
+// func generateBase64Images(artworkData []Artwork) []ArtworksWithImageData {
+// 	var artworksWithImageData []ArtworksWithImageData
+// 	for _, artwork := range artworkData {
+// 		imageFileName := artwork.High_res_image
+// 		imageData, _, _ := readImage(imageFileName)
+// 		artworkWithImageData := ArtworksWithImageData{Artwork: artwork, Imagedata: imageData}
+// 		artworksWithImageData = append(artworksWithImageData, artworkWithImageData)
+// 	}
+// 	return artworksWithImageData
+// }
 
 func readImage(imageFilePath string) (string, string, error) {
 	imageFullPath := fmt.Sprintf("./sudan_art_images/%s", imageFilePath)
