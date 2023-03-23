@@ -12,7 +12,6 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 	urlPath := request.Path
 	var response string
 	var statusCode int = 200
-	var headers map[string]string = map[string]string{"Content-Type": "application/json"}
 	switch urlPath {
 	case "/api/v1/recent":
 		pageNumberParam := request.QueryStringParameters["page"]
@@ -34,7 +33,7 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 	}
 	return &events.APIGatewayProxyResponse{
 		StatusCode: statusCode,
-		Headers:    headers,
+		Headers:    map[string]string{"Content-Type": "application/json"},
 		Body:       response,
 	}, nil
 }
