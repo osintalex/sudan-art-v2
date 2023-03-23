@@ -25,3 +25,7 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 functions/v1/sudan_art_database.json
+public/*.jpg
+public/*.webp
+public/*.jpeg
+.vscode/

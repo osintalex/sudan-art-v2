@@ -1,12 +1,10 @@
 import {
-  Button,
   Center,
   Image,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Tag,
@@ -44,7 +42,7 @@ function ImagePopover(props) {
     ],
     5
   );
-  const { imageDescription, imageArtist, imageDate, imageHighRes, sourceURL } =
+  const { imageDescription, imageArtist, imageDate, sourceURL } =
     props.popoverImageDetails;
 
   return (
@@ -96,6 +94,7 @@ function ImagePopover(props) {
             </Text>
             <Center style={{ transform: "scale(0.6)" }}>
               <FacebookShareButton
+                url={props.imageSrc}
                 quote={
                   "Look at this amazing piece of Sudanese revolutionary art! Burhan fi kobr!"
                 }
@@ -104,6 +103,7 @@ function ImagePopover(props) {
                 <FacebookIcon />
               </FacebookShareButton>
               <TwitterShareButton
+                url={props.imageSrc}
                 title={"Sudanese Revolutionary Art"}
                 via={"https://sudanart.com"}
                 hashtags={["#sudancoup", "#sudanart"]}
@@ -112,20 +112,13 @@ function ImagePopover(props) {
                 <TwitterIcon />
               </TwitterShareButton>
               <WhatsappShareButton
+                url={props.imageSrc}
                 title={"Check out this amazing Sudanese art!"}
               >
                 <WhatsappIcon />
               </WhatsappShareButton>
             </Center>
           </ModalBody>
-
-          <ModalFooter className="search-modal-footer">
-            <Button id="upload-submit-button" size="sm">
-              <a href={imageHighRes}>
-                <MultiLingualContent contentID="full_resolution" />
-              </a>
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

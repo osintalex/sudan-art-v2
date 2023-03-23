@@ -82,7 +82,6 @@ export default function Browse() {
                       imageDescription: pic.tags,
                       imageArtist: pic.artist,
                       imageDate: pic.date_uploaded,
-                      // imageHighRes: `/${pic.high_res_image}`,
                       sourceURL: pic.url,
                     });
                     onOpen(true);
