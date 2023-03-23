@@ -47,9 +47,6 @@ func BrowseImages(pageNumber int) (string, error) {
 // Convert the god awful string in `data.go` into a nice slice of structs
 func marshalArtworksJSON() []Artwork {
 	var artworkData []Artwork
-	error := json.Unmarshal([]byte(ArtworksJSON), &artworkData)
-	if error != nil {
-		log.Fatalf("Error unpacking JSON string %v", error.Error())
-	}
+	json.Unmarshal([]byte(ArtworksJSON), &artworkData)
 	return artworkData
 }
