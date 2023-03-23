@@ -1,4 +1,12 @@
-# Set Up
+# Background
+
+This website is a simpler version of the application that used to run
+[here](https://github.com/osintalex/sudan-art).
+
+I migrated it to use Netlify since it was (infinitely) cheaper than running this long term on
+Digital Ocean.
+
+## Set Up
 
 Dependencies:
 
@@ -35,6 +43,7 @@ For reference, this his how:
 ```shell
 pg_restore -d sudan_art_backup ~/Documents/Sudan\ Art/sudan_art_db_dump.pgsql
 ```
+
 ```sql
 COPY (
 SELECT json_agg(row_to_json(sudan_art_artwork)) :: text
