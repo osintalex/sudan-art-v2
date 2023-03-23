@@ -28,13 +28,16 @@ Just run `netlify deploy`.
 
 ## To dump the db
 
-`pg_restore -d sudan_art_backup ~/Documents/Sudan\ Art/sudan_art_db_dump.pgsql`
+This project previously had a postgres database as the backend. I got rid of this to reduce costs.
 
-https://alphahydrae.com/2021/02/how-to-export-postgresql-data-to-a-json-file/
+For reference, this his how:
 
+```shell
+pg_restore -d sudan_art_backup ~/Documents/Sudan\ Art/sudan_art_db_dump.pgsql
+```
+```sql
 COPY (
 SELECT json_agg(row_to_json(sudan_art_artwork)) :: text
 FROM sudan_art_artwork
-) to '<User Home>/sudan_art_database.json';
-
-Pretty neat once I got it working ay.
+) to './sudan_art_database.json';
+```
